@@ -1,0 +1,41 @@
+body {
+	background: #eee;
+	color: #444;
+}
+
+#split_entrada {
+	border-right: 2px solid #ccc;
+}
+#split_entrada h5 {
+	padding-top: 0.3em;
+}
+#split_entrada textarea {
+	margin-bottom: 0.3em;
+}
+#split_previo table tbody {
+	background: #FFF;
+	cursor: pointer;
+}
+#split_previo table tbody tr {
+	background: #ccc;
+}
+#split_previo table tbody tr.correcta {
+	background: #3FA332;
+	color: #FFF;
+}
+
+#resultado h4 {
+	text-align: center;
+}
+#selector_pregunta {
+	color: #FFF;
+	background: #007bff;
+	display: inline-block;
+	width: auto;
+}
+footer {
+	background-color: #ddd;
+	color: #404040;
+	font-size: 0.8em;
+	padding: 0 0.5em 0.5em 0.5em;
+}

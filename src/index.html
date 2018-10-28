@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/app.css" rel="stylesheet" id="styleSheet">
+</head>
+<body>
+
+<div id='app' class='container'>
+	<div class="row  d-flex align-items-stretch">
+		<div class="col-md-6" id='split_entrada'>
+			<h5>Entrada: </h5>
+			<textarea class="form-control"
+				v-model='contenido' :rows="num_lineas + 3"
+				v-on:keyup.enter="addLine">
+			</textarea>
+			<div class='row'>
+				<div class='col-md-7'>
+					<strong>Actual:</strong>
+					<select class='form-control' id='selector_pregunta' v-model='index'>
+						<option
+							v-for='i in preguntas.length'
+							:value='i-1'
+							@click='cargar(i-i)'>
+							{{ i }}
+						</option>
+					</select>
+				</div>
+				<div class='col-md-5'>
+					<button @click='nueva_pregunta()' class="btn btn-danger float-right">
+						+ Nueva Pregunta
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6" id='split_previo'>
+				<table class='table'>
+					<thead>
+						<tr><th colspan='2'>
+							<span class="badge badge-pill badge-danger">
+								{{ index + 1 }}
+							</span>
+							{{ pregunta.title }}
+						</th></tr>
+						<tr>
+							<th>Respuestas</th> <th>Correcta</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for='(opcion, i) in pregunta.options'
+							@click="set_correct(i)"
+							:class='{correcta: opcion.correct}'>
+							<td>{{ opcion.text }}</td>
+							<td>
+								{{ opcion.correct? 'Sí' : 'No' }}
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td style='padding:0'>
+								<button
+									class='btn btn-danger float-right'
+									title='Agregar Opción Nueva'>
+									+
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+		</div><!-- md-6 -->
+	</div><!-- row -->
+	<div class="row">
+		<div class="col-md-12" id='resultado'>
+			<h4>Resultado: </h4>
+			<textarea class="form-control" rows="10">{{ renderFile() }}</textarea>
+		</div>
+	</div>
+<!--
+<footer class="fixed-bottom text-center">
+	<button class='btn btn-lg btn-block btn-primary'>
+		Generar salida del cuestionario en formato Aiken.
+	</button>
+</footer>
+-->
+
+<script>window.$ = window.jQuery = require('../node_modules/jquery/dist/jquery.min');</script>
+
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../node_modules/vue/dist/vue.min.js"></script>
+<script> require('./aiken.js') </script>
+
+</body>
+
+</html>
