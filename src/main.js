@@ -7,7 +7,8 @@ const
     // Module to control application life.
     app = electron.app,
     // Module to create native browser window.
-    BrowserWindow = electron.BrowserWindow
+    BrowserWindow = electron.BrowserWindow,
+    path = require('path')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -17,7 +18,11 @@ function createWindow() {
     let bgColor = ('Wheit' === config.get('theme')) ? '#ffffff' : '#1e1e1e';
 
     // Create the browser window.
-    mainWindow = new BrowserWindow({ width: 800, height: 600 })
+    mainWindow = new BrowserWindow({
+		width: 800,
+		height: 600,
+		icon: 'icons/favicon.png'
+	})
 
     mainWindow.setMenu(null)
 
